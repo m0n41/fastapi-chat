@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f7">
+  <title>Чат — на связи</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section id="loading-screen" class="loading-screen" aria-live="polite">
+      <span class="brand-mark" aria-hidden="true">↗</span>
+      <p>Подключаемся к чату...</p>
+    </section>
+
+    <section id="auth-screen" class="auth-layout" hidden>
+      <aside class="auth-aside">
+        <a class="wordmark" href="/" aria-label="На главную">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span>рядом</span>
+        </a>
+        <div class="aside-copy">
+          <p class="eyebrow">ВАШЕ ПРОСТРАНСТВО ДЛЯ ОБЩЕНИЯ</p>
+          <h1>Хорошие разговоры начинаются здесь.</h1>
+          <p class="aside-description">Общайтесь в реальном времени — просто, спокойно и без лишнего.</p>
+        </div>
+        <p class="aside-footer">Небольшой чат для больших идей.</p>
+      </aside>
+
+      <div class="auth-main">
+        <div class="auth-card">
+          <p class="eyebrow">СНОВА РАДЫ ВАС ВИДЕТЬ</p>
+          <h2 id="auth-title">Войти в аккаунт</h2>
+          <p id="auth-subtitle" class="muted">Введите данные, чтобы продолжить общение.</p>
+          <div id="auth-notice" class="notice" role="alert" hidden></div>
+
+          <form id="login-form" class="auth-form">
+            <label for="login-username">Имя пользователя</label>
+            <input id="login-username" name="username" autocomplete="username" minlength="3" maxlength="30" required>
+            <label for="login-password">Пароль</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" minlength="8" required>
+            <button class="button button-primary auth-submit" type="submit">Войти <span aria-hidden="true">→</span></button>
+          </form>
+
+          <form id="register-form" class="auth-form" hidden>
+            <label for="register-username">Имя пользователя</label>
+            <input id="register-username" name="username" autocomplete="username" minlength="3" maxlength="30" required>
+            <label for="register-email">Электронная почта</label>
+            <input id="register-email" name="email" type="email" autocomplete="email" maxlength="100" required>
+            <label for="register-password">Пароль <span class="label-hint">не менее 8 символов</span></label>
+            <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+            <button class="button button-primary auth-submit" type="submit">Создать аккаунт <span aria-hidden="true">→</span></button>
+          </form>
+
+          <p class="auth-switch">
+            <span id="auth-switch-prompt">Еще нет аккаунта?</span>
+            <button id="auth-switch-button" class="text-button" type="button">Зарегистрироваться</button>
+          </p>
+        </div>
+        <p class="auth-legal">Ваши сообщения доступны только участникам чата.</p>
+      </div>
+    </section>
+
+    <section id="chat-screen" class="chat-layout" hidden>
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Рядом — на главную">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span>рядом</span>
+        </a>
+        <div class="topbar-right">
+          <div class="connection-status" aria-live="polite">
+            <span id="connection-dot" class="status-dot"></span>
+            <span id="connection-label">Подключение...</span>
+          </div>
+          <span class="topbar-divider" aria-hidden="true"></span>
+          <span id="current-username" class="current-username"></span>
+          <button id="logout-button" class="button button-quiet" type="button">Выйти</button>
+        </div>
+      </header>
+
+      <main class="chat-main">
+        <section class="chat-heading">
+          <div>
+            <p class="eyebrow">ОБЩИЙ ПРОСТРАНСТВО</p>
+            <h1>Разговоры</h1>
+            <p class="muted">Делитесь мыслями — всё важное уже здесь.</p>
+          </div>
+          <div class="chat-count"><span class="count-dot"></span> Живой чат</div>
+        </section>
+
+        <section class="chat-card" aria-label="Чат">
+          <div id="chat-error" class="chat-error" role="alert" hidden></div>
+          <div id="message-list" class="message-list" role="log" aria-live="polite" aria-relevant="additions text">
+            <div id="message-state" class="message-state">
+              <span class="state-icon" aria-hidden="true">···</span>
+              <p>Загружаем сообщения...</p>
+            </div>
+          </div>
+          <form id="message-form" class="composer">
+            <label class="visually-hidden" for="message-input">Ваше сообщение</label>
+            <textarea id="message-input" name="content" rows="1" maxlength="2000" placeholder="Напишите сообщение..." required></textarea>
+            <div class="composer-footer">
+              <span class="composer-hint">Enter — отправить <span aria-hidden="true">·</span> Shift + Enter — новая строка</span>
+              <div class="composer-actions">
+                <span id="character-count" class="character-count">0 / 2000</span>
+                <button id="send-button" class="button button-primary send-button" type="submit" aria-label="Отправить сообщение">
+                  <span>Отправить</span><span aria-hidden="true">↑</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+        <p class="chat-footnote"><span aria-hidden="true">✳</span> Будьте добры друг к другу.</p>
+      </main>
+    </section>
+  </main>
+</body>
+</html>
